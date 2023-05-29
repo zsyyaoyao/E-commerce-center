@@ -1,0 +1,58 @@
+server:
+  port: 20000
+
+spring:
+  application:
+    name: e-commerce-gateway
+  cloud:
+    gateway:
+      #Flag that enables DiscoveryClient gateway integration
+      #启用了 DiscoveryClient 服务发现
+      discovery:
+        locator:
+          enabled: true
+      routes: #配置路由, 可以有多个路由配置
+        - id: member_route01
+          uri:
+#            http://localhost:10000
+            #1. lb: 协议名 , member-service-provider 注册到eureka server 服务名(小写)
+            #2. 默认情况下，负载均衡算法是轮询
+            lb://member-service-provider
+          predicates: #断言,有多种形式
+            - Path=/member/get/**
+#            - After=2023-02-18T12:35:50.000+08:00[Asia/Shanghai]
+#            - Before=2023-01-18T12:35:50.000+08:00[Asia/Shanghai]
+#            - Between=2022-08-18T12:35:50.000+08:00[Asia/Shanghai],2023-01-18T12:35:50.000+08:00[Asia/Shanghai]
+#            - Cookie=user, hsp
+#            - Header= X-Request-Id, hello
+#            - Host=**.hspedu.**
+#            - Method=GET,POST
+#            - Query=email, [\w-]+@([a-zA-Z]+\.)+[a-zA-Z]+
+#            - RemoteAddr=129.11.11.11
+#          filters:
+#            - AddRequestParameter=color, blue
+
+        - id: member_route02
+          uri:
+#            http://localhost:10000
+            lb://member-service-provider
+          predicates: #断言,有多种形式
+            - Path=/member/save
+
+#        - id: member_route03
+#          uri:
+#            http://www.baidu.com
+#          predicates: #断言,有多种形式
+#            - Path=/
+
+#配置Eureka-Client
+eureka:
+  instance:
+    hostname: e-commerce-service
+  client:
+    service-url:
+      defaultZone: http://eureka9001.com:9001/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+

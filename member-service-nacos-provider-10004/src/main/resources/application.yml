@@ -1,0 +1,38 @@
+server:
+  port:
+    10004
+spring:
+  application:
+    name: member-service-nacos-provider #名称，可以自己指定　
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:8889/e_commerce_center_db?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 361232
+  #配置nacos
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #配置nacos Server的地址
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8080 #指定sentinel控制台地址
+#        port: 8719 #指定端口
+
+#1. transport.port 端口配置会在被监控的微服务对应主机上启动 Http Server
+#2. 该Http Server 会与Sentinel控制台进行交互
+#3. 比如sentinel 控制台添加了一个限流规则, 会把规则数据push 给这个Http Server 接收 Http Server 再将这个规则注册到Sentinel 中
+#4. 简单的讲: transport.port 指定被监控的微服务应用于sentinel 控制台交互的端口.
+#5. 默认端口是 8719, 假如被占用了, 就会自动的从8719开始依次+1扫描，直到找到一个没有被占用的端口
+
+#配置暴露所有的监控点
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+mybatis:
+    mapperLocations: classpath:mapper/*.xml #后面 mapper 文件的位置
+    type-aliases-package: com.zsy.entity
+
+

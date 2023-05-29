@@ -1,0 +1,30 @@
+server:
+  port: 80
+
+
+spring:
+  application:
+    name: e-commerce-center-openfeign
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka9001.com:9001/eureka,http://eureka9002.com:9002/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+
+
+
+#ribbon:
+#  #1. 设置feign客户端超时时间(openfeign默认支持ribbon)
+#  #2. ReadTimeout: 8000: 建立连接从服务提供方获取可用资源的所用的全部时间
+#  #3. 时间单位是毫秒
+#  ReadTimeout: 8000
+#  #两端连接所用时间
+#  ConnectionTimeout: 8000
+
+
+#logging:
+#  level:
+#    com.zsy.service.MemberFeignService: debug
