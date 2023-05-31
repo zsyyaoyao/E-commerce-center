@@ -25,6 +25,7 @@ eureka:
 #  ConnectionTimeout: 8000
 
 
-#logging:
-#  level:
-#    com.zsy.service.MemberFeignService: debug
+logging:
+  level:
+    #对MemberFeignService接口调用过程 打印日志信息  debug级别
+    com.zsy.service.MemberFeignService: debug

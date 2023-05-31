@@ -20,4 +20,6 @@ public class Member implements Serializable {
     private String mobile;
     private String email;
     private Integer gender;
+
+
 }

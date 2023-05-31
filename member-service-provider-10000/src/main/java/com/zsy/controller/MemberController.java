@@ -36,7 +36,6 @@ public class MemberController {
         //    throw new RuntimeException(e);
         //
 
-
         Member member = memberService.queryMemberById(id);
         log.info("查询结果= " + member);
         if (member != null) {
